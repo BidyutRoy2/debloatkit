@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>debloatkit — sample report demo</title>
+<style>
+:root{color-scheme:light dark}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0 auto;max-width:880px;padding:24px;line-height:1.55}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #8884}
+.badge{padding:2px 8px;border-radius:999px;font-size:.8rem}
+.safe{background:#dcfce7;color:#14532d}.caution{background:#fef9c3;color:#713f12}
+.never{background:#fee2e2;color:#7f1d1d}.unknown{background:#e5e7eb;color:#374151}
+button{padding:8px 14px;border-radius:8px;border:1px solid #8884;background:transparent;color:inherit;cursor:pointer}
+pre{background:#8882;padding:12px;border-radius:8px;overflow:auto}
+@media(prefers-color-scheme:dark){body{background:#0f172a;color:#e2e8f0}}
+</style></head>
+<body>
+<h1>🧹 debloatkit — sample report</h1>
+<p>This is what <code>debloatkit scan --report report.html</code> produces. No device needed for this demo.</p>
+<p><button onclick="document.body.style.filter=document.body.style.filter?'':'invert(1) hue-rotate(180deg)'">Toggle light / dark preview</button></p>
+<h2>Would disable (profile: tv-minimal)</h2>
+<table><tr><th>Package</th><th>Level</th><th>Why</th></tr>
+<tr><td><code>com.netflix.ninja</code></td><td><span class="badge safe">safe</span></td><td>Preloaded Netflix for TV</td></tr>
+<tr><td><code>com.amazon.amazonvideo.livingroom</code></td><td><span class="badge safe">safe</span></td><td>Preloaded Prime Video for TV</td></tr>
+</table>
+<h2>Kept / protected</h2>
+<table><tr><th>Package</th><th>Level</th><th>Why</th></tr>
+<tr><td><code>com.android.systemui</code></td><td><span class="badge never">never</span></td><td>Status bar, navigation, lock screen</td></tr>
+<tr><td><code>com.google.android.apps.assistant</code></td><td><span class="badge caution">caution</span></td><td>Breaks voice button if removed</td></tr>
+<tr><td><code>com.example.oem.weather</code></td><td><span class="badge unknown">unknown</span></td><td>Not in the curated database — never auto-touched</td></tr>
+</table>
+<h2>Try it for real</h2>
+<pre>pip install debloatkit
+debloatkit scan --host 192.168.1.50 --report report.html
+debloatkit apply --host 192.168.1.50 --backup backup.json --yes
+debloatkit restore --host 192.168.1.50 --backup backup.json --yes</pre>
+<p>MIT licensed. No root, no account, no telemetry.</p>
+</body></html>

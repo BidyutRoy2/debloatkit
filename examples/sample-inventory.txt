@@ -1,0 +1,8 @@
+# Sample output of: debloatkit inventory --host 192.168.1.50
+# (fictional device: "Example Google TV" — real package names vary by OEM)
+package:com.android.systemui
+package:com.google.android.tvlauncher
+package:com.netflix.ninja
+package:com.amazon.amazonvideo.livingroom
+package:com.google.android.apps.assistant
+package:com.example.oem.weather
